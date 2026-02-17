@@ -104,7 +104,8 @@ export const portfolioData = {
         { year: "2025", title: "(주)지오유 : 웹 개발 교육", date: "9/7 ~ 2026/1/2" },
 
         // 2026
-        { year: "2026", title: "주관 The Asia Foundation 후원 Microsoft 협력 BUSINESS H4C - Skills2Work-Seoul", date: "1/12 ~ 1/21" }
+        { year: "2026", title: "주관 The Asia Foundation 후원 Microsoft 협력 BUSINESS H4C - Skills2Work-Seoul", date: "1/12 ~ 1/21" },
+        { year: "2026", title: "서울여대 정보보호 영재교육원 전문 RnE 합격", date: "2/11" }
       ]
     }
   ]
