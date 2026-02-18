@@ -105,7 +105,7 @@ export const portfolioData = {
 
         // 2026
         { year: "2026", title: "주관 The Asia Foundation 후원 Microsoft 협력 BUSINESS H4C - Skills2Work-Seoul", date: "1/12 ~ 1/21" },
-        { year: "2026", title: "서울여대 정보보호 영재교육원 전문 RnE 합격", date: "2/11" }
+        { year: "2026", title: "서울여대 정보보호영재교육원 전문RnE 합격", date: "2/11" }
       ]
     }
   ]
