@@ -80,7 +80,12 @@ export const portfolioData = {
         { year: "2025", title: "경기도 미래 창업가 발굴 프로그램", date: "10/27 ~ 11/29" },
         { year: "2025", title: "2025 경기 콘텐츠 창의학교 경진대회", date: "11/7" },
         { year: "2025", title: "2025년 Al-Security 창의 캠프 이수증", date: "11/10" },
-        { year: "2025", title: "2025 Layer7 CTF", date: "11/15" }
+        { year: "2025", title: "2025 Layer7 CTF", date: "11/15" },
+
+        // 2026
+        { year: "2026", title: "2026 Kalmar CTF", date: "3/27 ~ 3/29" },
+        { year: "2026", title: "2026 CodeGate CTF", date: "3/28" },
+        { year: "2026", title: "2026 CyberGAME", date: "4/2" }
       ]
     },
     {
@@ -105,7 +110,8 @@ export const portfolioData = {
 
         // 2026
         { year: "2026", title: "주관 The Asia Foundation 후원 Microsoft 협력 BUSINESS H4C - Skills2Work-Seoul", date: "1/12 ~ 1/21" },
-        { year: "2026", title: "서울여대 정보보호영재교육원 전문RnE 합격", date: "2/11" }
+        { year: "2026", title: "서울여대 정보보호영재교육원 전문RnE 합격", date: "2/11" },
+        { year: "2026", title: "2026 JA Korea", date: "4/4" }
       ]
     }
   ]
