@@ -89,7 +89,8 @@ export const portfolioData = {
         // 2026
         { year: "2026", title: "2026 Kalmar CTF", date: "3/27 ~ 3/29" },
         { year: "2026", title: "2026 CodeGate CTF", date: "3/28" },
-        { year: "2026", title: "2026 CyberGAME", date: "4/2" }
+        { year: "2026", title: "2026 CyberGAME", date: "4/2" },
+        { year: "2026", title: "2026 RITSEC CTF", date: "4/3 ~ 4/5" }
       ]
     },
     {
