@@ -2,45 +2,105 @@ import React, { useState, useEffect, useRef } from 'react';
 import { portfolioData } from '../data/portfolio-data';
 
 /**
- * Functional Terminal Component
- * @description Allows real-time command execution and interaction.
+ * Advanced Functional Terminal Component
+ * @description Simulates a real file system with directory navigation and file reading.
  */
 const Terminal = () => {
+    // Simulated File System
+    const fileSystem = {
+        '/': ['about/', 'projects/', 'activities/', 'contact.txt'],
+        '/about': ['bio.txt', 'goal.txt'],
+        '/projects': portfolioData.projects.map(p => `${p.title.toLowerCase().replace(/\s+/g, '_')}.txt`),
+        '/activities': ['ctf_history.txt', 'awards.txt'],
+    };
+
+    const fileContents = {
+        '/about/bio.txt': portfolioData.profile.bio,
+        '/about/goal.txt': 'Goal: To become a top-tier Security Researcher and Developer.',
+        '/contact.txt': `Email: ${portfolioData.profile.email}\nGitHub: ${portfolioData.profile.github}`,
+        ...portfolioData.projects.reduce((acc, p) => {
+            acc[`/projects/${p.title.toLowerCase().replace(/\s+/g, '_')}.txt`] = 
+                `Title: ${p.title}\nDescription: ${p.description}\nTags: ${p.tags.join(', ')}\nLink: ${p.link}`;
+            return acc;
+        }, {}),
+        '/activities/ctf_history.txt': portfolioData.sections[0].items.map(i => `${i.year} - ${i.title} (${i.date})`).join('\n'),
+        '/activities/awards.txt': 'Check the "Activities" section below for full visual awards and badges.',
+    };
+
     const [history, setHistory] = useState([
-        { type: 'output', text: 'Welcome to DKQ307A-OS v1.0.0' },
+        { type: 'output', text: 'Welcome to DKQ307A-OS v1.1.0' },
         { type: 'output', text: 'Type "help" to see available commands.' },
     ]);
+    const [currentPath, setCurrentPath] = useState('/');
     const [inputValue, setInputValue] = useState('');
     const scrollRef = useRef(null);
     const inputRef = useRef(null);
 
-    const commands = {
-        help: () => 'Available commands: about, projects, activities, contact, whoami, clear, help',
-        whoami: () => `User: Guest | Identity: ${portfolioData.profile.name}`,
-        about: () => portfolioData.profile.bio,
-        clear: () => {
-            setHistory([]);
-            return null;
-        },
-        ls: () => 'projects/  activities/  skills.txt',
-        projects: () => portfolioData.projects.map(p => `• ${p.title}`).join('\n'),
-        activities: () => 'Visit the "Activities" section below for the full 2024-2026 history.',
-        contact: () => `GitHub: ${portfolioData.profile.github}`,
+    const formatPrompt = () => {
+        const path = currentPath === '/' ? '~' : currentPath.replace(/^\//, '');
+        return `DKQ307A@MacBook ${path} %`;
     };
 
     const handleCommand = (e) => {
         if (e.key === 'Enter') {
-            const cmd = inputValue.trim().toLowerCase();
-            const newHistory = [...history, { type: 'command', text: cmd }];
+            const fullCmd = inputValue.trim();
+            const [cmd, ...args] = fullCmd.split(' ');
+            const target = args.join(' ');
+            const newHistory = [...history, { type: 'command', text: fullCmd }];
 
             if (cmd) {
-                if (commands[cmd]) {
-                    const output = commands[cmd]();
-                    if (output) {
-                        newHistory.push({ type: 'output', text: output });
-                    }
-                } else {
-                    newHistory.push({ type: 'output', text: `Command not found: ${cmd}. Type "help" for a list of commands.` });
+                switch (cmd.toLowerCase()) {
+                    case 'help':
+                        newHistory.push({ type: 'output', text: 'Commands: ls, cd [dir], cat [file], pwd, clear, whoami, help' });
+                        break;
+                    case 'whoami':
+                        newHistory.push({ type: 'output', text: `User: Guest | Identity: ${portfolioData.profile.name}` });
+                        break;
+                    case 'clear':
+                        setHistory([]);
+                        setInputValue('');
+                        return;
+                    case 'pwd':
+                        newHistory.push({ type: 'output', text: currentPath });
+                        break;
+                    case 'ls':
+                        const contents = fileSystem[currentPath] || [];
+                        newHistory.push({ type: 'output', text: contents.join('  ') });
+                        break;
+                    case 'cd':
+                        if (!target || target === '~' || target === '/') {
+                            setCurrentPath('/');
+                        } else if (target === '..') {
+                            if (currentPath !== '/') {
+                                const parts = currentPath.split('/').filter(Boolean);
+                                parts.pop();
+                                setCurrentPath('/' + parts.join('/'));
+                            }
+                        } else {
+                            const newPath = currentPath === '/' ? `/${target}` : `${currentPath}/${target}`;
+                            if (fileSystem[newPath]) {
+                                setCurrentPath(newPath);
+                            } else {
+                                newHistory.push({ type: 'output', text: `cd: no such directory: ${target}` });
+                            }
+                        }
+                        break;
+                    case 'cat':
+                        if (!target) {
+                            newHistory.push({ type: 'output', text: 'usage: cat [file]' });
+                        } else {
+                            const filePath = target.startsWith('/') ? target : (currentPath === '/' ? `/${target}` : `${currentPath}/${target}`);
+                            if (fileContents[filePath]) {
+                                newHistory.push({ type: 'output', text: fileContents[filePath] });
+                            } else if (fileSystem[filePath]) {
+                                newHistory.push({ type: 'output', text: `cat: ${target}: Is a directory` });
+                            } else {
+                                newHistory.push({ type: 'output', text: `cat: ${target}: No such file or directory` });
+                            }
+                        }
+                        break;
+                    default:
+                        newHistory.push({ type: 'output', text: `zsh: command not found: ${cmd}` });
                 }
             }
 
@@ -79,7 +139,7 @@ const Terminal = () => {
                     <div key={i} style={{ marginBottom: '6px' }}>
                         {line.type === 'command' ? (
                             <div style={{ color: 'var(--accent-green)' }}>
-                                <span style={{ opacity: 0.7 }}>DKQ307A@MacBook ~ %</span> <span style={{ color: '#fff' }}>{line.text}</span>
+                                <span style={{ opacity: 0.7 }}>{formatPrompt().replace(/ %$/, '')}</span> <span style={{ color: '#fff' }}>% {line.text}</span>
                             </div>
                         ) : (
                             <div style={{ color: '#888', whiteSpace: 'pre-wrap' }}>{line.text}</div>
@@ -90,7 +150,7 @@ const Terminal = () => {
 
             {/* Input Line */}
             <div style={{ display: 'flex', color: 'var(--accent-green)' }}>
-                <span style={{ opacity: 0.7, marginRight: '8px' }}>DKQ307A@MacBook ~ %</span>
+                <span style={{ opacity: 0.7, marginRight: '8px' }}>{formatPrompt()}</span>
                 <input
                     ref={inputRef}
                     type="text"
