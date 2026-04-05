@@ -68,7 +68,8 @@ const Hero = () => {
             color: '#000',
             borderRadius: '50px',
             fontWeight: 700,
-            fontSize: '0.95rem'
+            fontSize: '0.95rem',
+            textDecoration: 'none'
           }}>
             프로젝트 보기
           </a>
@@ -78,7 +79,8 @@ const Hero = () => {
             color: '#fff',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px'
+            gap: '8px',
+            textDecoration: 'none'
           }}>
             GitHub
           </a>
