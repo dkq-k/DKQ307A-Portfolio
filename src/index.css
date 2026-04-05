@@ -1,79 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700&family=Orbitron:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* Cyber Colors - Inspired by CodeGate & Kalmar */
-  --bg-primary: #050505; /* True Black/Deep Gray */
+  /* Minimalist Hacker Colors - Inspired by cr4ne.kr */
+  --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
-  --bg-card: rgba(15, 15, 15, 0.7);
-  --accent-cyan: #00f3ff;
-  --accent-purple: #bc13fe;
-  --accent-white: #ffffff;
+  --bg-card: rgba(20, 20, 20, 0.5);
+  --accent-blue: #0070f3;
+  --accent-green: #00ff00;
   --text-primary: #ffffff;
   --text-secondary: #888888;
+  --text-muted: #555555;
   
-  /* Modern Cyber Gradients */
-  --accent-gradient: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
-  --border-gradient: linear-gradient(90deg, rgba(0, 243, 255, 0.3) 0%, rgba(188, 19, 254, 0.3) 100%);
+  /* Modern Gradients & Shadows */
+  --glow-blue: radial-gradient(circle at bottom right, rgba(0, 112, 243, 0.15) 0%, transparent 70%);
+  --glow-left: radial-gradient(circle at bottom left, rgba(0, 112, 243, 0.10) 0%, transparent 60%);
   
   /* Spacing */
-  --spacing-container: 1400px;
-  --spacing-section: 120px;
+  --spacing-container: 1000px; /* Slimmer for minimalist feel */
+  --spacing-section: 100px;
 }
 
-/* Animated Cyber Grid Background */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Ambient Side Glows */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: center center;
+  bottom: 0;
+  right: 0;
+  width: 50vw;
+  height: 50vh;
+  background: var(--glow-blue);
   z-index: -1;
-  opacity: 0.3;
+  pointer-events: none;
 }
 
-/* Scanline Effect */
 body::after {
   content: '';
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.1) 50%
-  ), linear-gradient(
-    90deg, 
-    rgba(255, 0, 0, 0.02), 
-    rgba(0, 255, 0, 0.01), 
-    rgba(0, 0, 255, 0.02)
-  );
-  background-size: 100% 4px, 3px 100%;
-  pointer-events: none;
-  z-index: 100;
-  opacity: 0.2;
-}
-
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-
-.scanline-moving {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.1), transparent);
-  animation: scanline 8s linear infinite;
-  z-index: 99;
+  width: 40vw;
+  height: 40vh;
+  background: var(--glow-left);
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -131,63 +108,87 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text-primary);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 5px var(--accent-cyan), 0 0 10px var(--accent-cyan); }
-  to { text-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.neon-text {
-  color: var(--accent-cyan);
-  animation: glow 2s ease-in-out infinite alternate;
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.dashboard-border {
-  border: 1px solid rgba(0, 243, 255, 0.2);
-  position: relative;
+/* Mac-style Terminal */
+.mac-terminal {
+  background: #121212;
+  border-radius: 10px;
+  border: 1px solid #333;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.dashboard-border::before {
-  content: '';
+.terminal-header {
+  background: #1e1e1e;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--accent-green);
+}
+
+/* Minimalist List */
+.minimal-list {
+  list-style: none;
+  padding: 0;
+}
+
+.minimal-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.minimal-list li::before {
+  content: '•';
   position: absolute;
-  top: 0;
   left: 0;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid var(--accent-cyan);
-  border-left: 2px solid var(--accent-cyan);
+  color: var(--text-muted);
 }
 
-.dashboard-border::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  border-bottom: 2px solid var(--accent-purple);
-  border-right: 2px solid var(--accent-purple);
-}
-
-/* Glassmorphism Utilities */
-.glass-card {
+/* Glass View Utilities */
+.glass-view {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 4px; /* Sharper corners for dashboard feel */
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
 }
 
-.glass-card:hover {
-  background: rgba(20, 20, 20, 0.8);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
+.glass-view:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .avatar-glow {
