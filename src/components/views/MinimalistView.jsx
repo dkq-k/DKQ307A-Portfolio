@@ -43,12 +43,16 @@ const ProjectCard = ({ project }) => {
 
 const MinimalistView = () => {
   return (
-    <div className="container" style={{ paddingBottom: '150px', maxWidth: 'var(--spacing-container)' }}>
+    <div className="container" style={{ 
+      paddingBottom: '150px', 
+      maxWidth: 'var(--spacing-container)',
+      paddingLeft: '60px' /* Move slightly to the right */
+    }}>
       
       {/* Activity Sections (CTF, Activities, etc.) */}
       {portfolioData.sections?.map((section, sIdx) => {
-        // Group items by year
-        const years = [...new Set(section.items.map(item => item.year))].sort((a, b) => b - a);
+        // Group items by year (Ascending: 2024 -> 2026)
+        const years = [...new Set(section.items.map(item => item.year))].sort((a, b) => a - b);
         
         return (
           <section key={sIdx} style={{ marginBottom: '80px' }}>

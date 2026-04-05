@@ -7,11 +7,11 @@ const Terminal = () => {
     const scrollRef = useRef(null);
 
     const commands = [
-        { cmd: "whoami", output: "NiceTop / dkq-k" },
-        { cmd: "ls -R /2026", output: "./CodeGate_CTF  ./Kalmar_CTF  ./CyberGAME" },
-        { cmd: "cat ja_korea.txt", output: "Status: 2026 JA Korea Activity Logged. [4/4]" },
-        { cmd: "cat status", output: "System Online. Latest 2026 data synchronized." }
-    ];
+    { cmd: "whoami", output: "NiceTop / DKQ307A" },
+    { cmd: "ls -R /2026", output: "./CodeGate_CTF  ./Kalmar_CTF  ./CyberGAME" },
+    { cmd: "cat ja_korea.txt", output: "Status: 2026 JA Korea Activity Logged. [4/4]" },
+    { cmd: "cat status", output: "System Online. Latest 2026 data synchronized." }
+  ];
 
     useEffect(() => {
         let charIndex = 0;
@@ -65,7 +65,7 @@ const Terminal = () => {
                 <div key={i} style={{ marginBottom: '6px' }}>
                     {line.type === 'command' ? (
                         <div style={{ color: 'var(--accent-green)' }}>
-                            <span style={{ opacity: 0.7 }}>cr4ne@MacBook ~ %</span> <span style={{ color: '#fff' }}>{line.text}</span>
+                            <span style={{ opacity: 0.7 }}>DKQ307A@MacBook ~ %</span> <span style={{ color: '#fff' }}>{line.text}</span>
                         </div>
                     ) : (
                         <div style={{ color: '#555', paddingLeft: '0' }}>{line.text}</div>
@@ -76,7 +76,7 @@ const Terminal = () => {
             {/* Current typing line */}
             {commandIndex < commands.length && (
                 <div style={{ color: 'var(--accent-green)' }}>
-                    <span style={{ opacity: 0.7 }}>cr4ne@MacBook ~ %</span> <span style={{ color: '#fff' }}>{currentLine}</span>
+                    <span style={{ opacity: 0.7 }}>DKQ307A@MacBook ~ %</span> <span style={{ color: '#fff' }}>{currentLine}</span>
                     <span style={{ animation: 'blink 1s infinite', background: '#fff', color: '#fff' }}>_</span>
                 </div>
             )}
@@ -84,7 +84,7 @@ const Terminal = () => {
             {/* Final cursor */}
             {commandIndex >= commands.length && (
                 <div style={{ color: 'var(--accent-green)' }}>
-                    <span style={{ opacity: 0.7 }}>cr4ne@MacBook ~ %</span>
+                    <span style={{ opacity: 0.7 }}>DKQ307A@MacBook ~ %</span>
                     <span style={{ animation: 'blink 1s infinite', background: '#fff', color: '#fff', marginLeft: '8px' }}>_</span>
                 </div>
             )}

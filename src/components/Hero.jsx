@@ -18,7 +18,8 @@ const Hero = () => {
       paddingTop: '80px',
       maxWidth: 'var(--spacing-container)',
       margin: '0 auto',
-      position: 'relative'
+      position: 'relative',
+      paddingLeft: '60px' /* Move slightly to the right */
     }}>
       {/* Left Content */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -56,6 +57,7 @@ const Hero = () => {
         </p>
 
         {/* Buttons */}
+        {/* Buttons */}
         <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
           <a href="#projects" className="glass-view" style={{
             padding: '12px 28px',
@@ -77,22 +79,6 @@ const Hero = () => {
           }}>
             GitHub
           </a>
-        </div>
-
-        {/* Spotify Placeholder (Minimalist Style) */}
-        <div className="glass-view" style={{
-          marginTop: '2rem',
-          padding: '12px 20px',
-          borderRadius: '50px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          width: 'fit-content',
-          fontSize: '0.85rem',
-          color: 'var(--text-secondary)'
-        }}>
-          <div style={{ width: '8px', height: '8px', background: '#1DB954', borderRadius: '50%' }}></div>
-          Not playing Spotify
         </div>
       </div>
 
