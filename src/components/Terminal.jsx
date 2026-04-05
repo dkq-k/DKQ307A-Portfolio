@@ -8,9 +8,10 @@ const Terminal = () => {
 
     const commands = [
         { cmd: "whoami", output: "Abdullah (NT_DKQ307A)" },
-        { cmd: "cat skills.txt", output: "System Hacking, Pwnable, Cryptography, Web Security" },
-        { cmd: "date", output: new Date().toDateString() },
-        { cmd: "./welcome.sh", output: "Access Granted. Welcome to my secure portfolio." }
+        { cmd: "ls -R /ctf/2026", output: "./Kalmar_CTF  ./CodeGate_CTF  ./CyberGAME" },
+        { cmd: "cat /activities/2026/ja_korea.txt", output: "Status: 2026 JA Korea Activity Logged. [4/4]" },
+        { cmd: "cat skills.txt", output: "System Hacking, Pwnable, Cryptography, Web Security, Malware Analysis" },
+        { cmd: "./welcome.sh", output: "Access Granted. Latest 2026 data synchronized." }
     ];
 
     useEffect(() => {

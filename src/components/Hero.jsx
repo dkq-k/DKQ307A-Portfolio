@@ -21,6 +21,21 @@ const Hero = () => {
     }}>
       {/* 왼쪽: 텍스트 소개 영역 */}
       <div style={{ order: 1 }}> {/* 모바일에서도 순서 유지 */}
+        {profile.avatar && (
+          <div className="animate-fade-in avatar-glow" style={{ marginBottom: '2rem' }}>
+            <img 
+              src={profile.avatar} 
+              alt={profile.name} 
+              style={{ 
+                width: '120px', 
+                height: '120px', 
+                borderRadius: '50%', 
+                objectFit: 'cover',
+                border: '2px solid rgba(255,255,255,0.1)'
+              }} 
+            />
+          </div>
+        )}
         <h4 className="animate-fade-in" style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '1.2rem', fontWeight: 500 }}>안녕하세요, 저는</h4>
 
         <h1 className="gradient-text animate-fade-in delay-100" style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.2 }}>

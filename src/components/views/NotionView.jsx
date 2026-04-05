@@ -29,9 +29,9 @@ const groupByOrderPreserved = (items) => {
  * Renders a project link looking like a GitHub repository preview
  */
 const GitHubCard = ({ project }) => {
-  // Extract repo name if possible (e.g. from https://github.com/user/repo)
+  // Extract repo name if possible
   let repoName = project.title;
-  let owner = "GitHub";
+  let owner = "dkq-k";
 
   if (project.link?.includes('github.com')) {
     const parts = project.link.split('github.com/')[1]?.split('/');
@@ -46,36 +46,46 @@ const GitHubCard = ({ project }) => {
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="notion-github-card"
+      className="glass-card"
       style={{
         display: 'flex',
-        alignItems: 'center',
-        background: '#202020', // Notion dark card bg
-        border: '1px solid #333',
-        borderRadius: '4px',
-        padding: '12px',
-        marginTop: '6px',
-        marginBottom: '4px', // Spacing after card
+        flexDirection: 'column',
+        marginTop: '12px',
+        marginBottom: '4px',
         textDecoration: 'none',
         color: '#e0e0e0',
-        transition: 'background 0.2s',
+        overflow: 'hidden',
         maxWidth: '100%'
       }}
     >
-      <div style={{ marginRight: '12px' }}>
-        <Github size={24} color="#fff" />
-      </div>
-      <div style={{ flex: 1, overflow: 'hidden' }}>
-        <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '2px' }}>
-          {repoName}
+      {/* Project Image Preview */}
+      {project.image && (
+        <div style={{ width: '100%', height: '180px', overflow: 'hidden', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} 
+            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+          />
         </div>
-        <div style={{ fontSize: '12px', color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {project.description}
+      )}
+      
+      <div style={{ padding: '16px', display: 'flex', alignItems: 'center' }}>
+        <div style={{ marginRight: '16px', opacity: 0.8 }}>
+          <Github size={28} color="#fff" />
         </div>
-      </div>
-      <div style={{ fontSize: '12px', color: '#777', display: 'flex', alignItems: 'center', gap: '4px' }}>
-        <ExternalLink size={12} />
-        GitHub에 연결해 미리보기
+        <div style={{ flex: 1, overflow: 'hidden' }}>
+          <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '4px', color: '#fff' }}>
+            {owner} / {repoName}
+          </div>
+          <div style={{ fontSize: '13px', color: '#999', lineHeight: 1.4 }}>
+            {project.description}
+          </div>
+        </div>
+        <div style={{ marginLeft: '12px', opacity: 0.5 }}>
+          <ExternalLink size={16} />
+        </div>
       </div>
     </a>
   );

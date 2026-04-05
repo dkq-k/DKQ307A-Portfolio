@@ -16,6 +16,7 @@ export const portfolioData = {
     bio: "정보 보안을 공부하는 학생입니다. System Hacking과 Cryptography를 중심적으로 공부하고 있습니다.",
     email: "ab1315271@gmail.com",
     github: "https://github.com/dkq-k",
+    avatar: "/images/avatar.png",
   },
 
   // 기술 스택
@@ -25,6 +26,9 @@ export const portfolioData = {
     { name: "Python", icon: "python" },
     { name: "React", icon: "react" },
     { name: "Node.js", icon: "nodejs" },
+    { name: "Malware Analysis", icon: "security" },
+    { name: "System Reconstruction", icon: "security" },
+    { name: "Log Analysis", icon: "security" },
   ],
 
   // 프로젝트 목록
@@ -35,7 +39,7 @@ export const portfolioData = {
       description: "정보보안 교육 용 웹 사이트",
       tags: ["React", "Firebase", "Web"],
       link: "https://nicetop.dyhs.kr",
-      image: "/images/placeholder.svg",
+      image: "/images/project1.png",
       year: "2025",
       date: "3/22"
     },
@@ -45,7 +49,7 @@ export const portfolioData = {
       description: "교내 골든벨 대회 진행을 위한 웹 사이트",
       tags: ["Web", "React", "JavaScript"],
       link: "http://goldenbell.dyhs.kr/",
-      image: "/images/placeholder.svg",
+      image: "/images/project2.png",
       year: "2025",
       date: "12/31"
     },
@@ -55,7 +59,7 @@ export const portfolioData = {
       description: "BadUSB 파일을 응용한 재밌는 바이러스(무해함)",
       tags: ["Python", "Ascii", "Terminal"],
       link: "https://github.com/dkq-k/BadUSB-1.git",
-      image: "/images/placeholder.svg",
+      image: "/images/project3.png",
       year: "2026",
       date: "1/7"
     }
