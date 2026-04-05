@@ -1,5 +1,7 @@
+import React from 'react';
 import Terminal from './Terminal';
 import { portfolioData } from '../data/portfolio-data';
+import useReveal from '../hooks/useReveal';
 
 /**
  * Hero Component
@@ -8,6 +10,7 @@ import { portfolioData } from '../data/portfolio-data';
  */
 const Hero = () => {
   const { profile } = portfolioData;
+  useReveal();
   return (
     <section className="section container animate-fade-in" style={{
       minHeight: '85vh',
@@ -22,7 +25,7 @@ const Hero = () => {
       paddingLeft: '60px' /* Move slightly to the right */
     }}>
       {/* Left Content */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', fontWeight: 400 }}>
           안녕하세요, 저는
         </div>
@@ -83,7 +86,7 @@ const Hero = () => {
       </div>
 
       {/* Right Terminal Area */}
-      <div className="animate-fade-in" style={{ padding: '0 10px' }}>
+      <div className="reveal delay-200" style={{ padding: '0 10px' }}>
         <div className="mac-terminal">
           <div className="terminal-header">
             <div className="dot red"></div>

@@ -1,17 +1,18 @@
 import React from 'react';
 import { portfolioData } from '../../data/portfolio-data';
 import { Github, ExternalLink } from 'lucide-react';
+import useReveal from '../../hooks/useReveal';
 
 /**
  * Minimalist Project Card
  */
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, index }) => {
   return (
     <a
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="glass-view"
+      className={`glass-view reveal delay-${(index % 3) * 100}`}
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -42,6 +43,8 @@ const ProjectCard = ({ project }) => {
 };
 
 const MinimalistView = () => {
+  useReveal();
+
   return (
     <div className="container" style={{ 
       paddingBottom: '150px', 
@@ -55,7 +58,7 @@ const MinimalistView = () => {
         const years = [...new Set(section.items.map(item => item.year))].sort((a, b) => a - b);
         
         return (
-          <section key={sIdx} style={{ marginBottom: '80px' }}>
+          <section key={sIdx} className="reveal" style={{ marginBottom: '80px' }}>
             <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '40px' }}>{section.title}</h2>
             
             {years.map(year => (
@@ -63,7 +66,7 @@ const MinimalistView = () => {
                 <h3 style={{ fontSize: '1rem', color: '#fff', fontWeight: 700, marginBottom: '16px' }}>{year}</h3>
                 <ul className="minimal-list">
                   {section.items.filter(item => item.year === year).map((item, iIdx) => (
-                    <li key={iIdx}>
+                    <li key={iIdx} className="reveal delay-100">
                       <span style={{ color: 'var(--text-primary)' }}>{item.title}</span>
                       {item.badge && (
                         <span style={{ marginLeft: '8px', color: '#ffd700', fontSize: '0.8rem', fontWeight: 600 }}>
@@ -83,17 +86,17 @@ const MinimalistView = () => {
       })}
 
       {/* Projects Section */}
-      <section id="projects">
+      <section id="projects" className="reveal">
         <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '40px' }}>프로젝트</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {portfolioData.projects?.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {portfolioData.projects?.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </section>
 
       {/* Footer Info */}
-      <div style={{ marginTop: '100px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+      <div className="reveal" style={{ marginTop: '100px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
         <p>© 2026 {portfolioData.profile.name}. All rights reserved.</p>
         <p style={{ marginTop: '8px' }}>4월 5일 편집 · 공유</p>
       </div>
