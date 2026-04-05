@@ -1,6 +1,6 @@
 
 import Hero from '../components/Hero';
-import NotionView from '../components/views/NotionView';
+import DashboardView from '../components/views/DashboardView';
 import { portfolioData } from '../data/portfolio-data';
 
 /**
@@ -12,7 +12,7 @@ const Navigation = () => (
   <nav style={{ padding: '20px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'fixed', width: '100%', top: 0, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)', zIndex: 100 }}>
     <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       {/* 로고 / 홈 링크 */}
-      <div style={{ fontWeight: 700, fontSize: '1.5rem' }}>DKQ307A</div>
+      <div style={{ fontWeight: 700, fontSize: '1.5rem', fontFamily: 'Orbitron', color: 'var(--accent-cyan)' }}>DKQ307A_SYS</div>
 
       {/* 메뉴 링크들 */}
       <div style={{ display: 'flex', gap: '2rem' }}>
@@ -28,7 +28,7 @@ const Navigation = () => (
  */
 const Footer = () => (
   <footer style={{ padding: '4rem 0', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-    <p>© {new Date().getFullYear()} {portfolioData.profile.name}. All rights reserved.</p>
+    <p>© {new Date().getFullYear()} {portfolioData.profile.name}. All systems operational.</p>
   </footer>
 );
 
@@ -43,7 +43,7 @@ const Home = () => {
       {/* 메인 콘텐츠 영역 (내비게이션 바 높이만큼 상단 여백 추가) */}
       <main style={{ paddingTop: '80px', paddingBottom: '100px' }}>
         <Hero />
-        <NotionView />
+        <DashboardView />
       </main>
       <Footer />
     </>
