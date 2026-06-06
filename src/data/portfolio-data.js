@@ -116,7 +116,10 @@ export const portfolioData = {
         // 2026
         { year: "2026", title: "주관 The Asia Foundation 후원 Microsoft 협력 BUSINESS H4C - Skills2Work-Seoul", date: "1/12 ~ 1/21" },
         { year: "2026", title: "서울여대 정보보호영재교육원 전문RnE 합격", date: "2/11" },
-        { year: "2026", title: "2026 JA Korea", date: "4/4" }
+        { year: "2026", title: "(주)플럭스웨어 창업", date: "2/19" },
+        { year: "2026", title: "2026 JA Korea", date: "4/4" },
+        { year: "2026", title: "2026년 해킹팀 KR-X 합류하여 활동 중", date: "4/17" },
+        { year: "2026", title: "제2회 경기 청소년 사이버 보안 캠프", date: "4/27 ~ 9/30" }
       ]
     }
   ]
