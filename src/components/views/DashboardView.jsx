@@ -90,7 +90,6 @@ const GitHubCard = ({ project }) => {
 
 const DashboardView = () => {
   const { projects } = portfolioData;
-  const groupedProjects = groupByOrderPreserved(projects || []);
 
   return (
     <div className="section container" style={{ paddingBottom: '120px' }}>

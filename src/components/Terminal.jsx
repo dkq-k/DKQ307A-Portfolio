@@ -63,10 +63,11 @@ const Terminal = () => {
                     case 'pwd':
                         newHistory.push({ type: 'output', text: currentPath });
                         break;
-                    case 'ls':
+                    case 'ls': {
                         const contents = fileSystem[currentPath] || [];
                         newHistory.push({ type: 'output', text: contents.join('  ') });
                         break;
+                    }
                     case 'cd':
                         if (!target || target === '~' || target === '/') {
                             setCurrentPath('/');

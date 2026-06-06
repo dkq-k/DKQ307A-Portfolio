@@ -1,7 +1,6 @@
 
 import Hero from '../components/Hero';
 import MinimalistView from '../components/views/MinimalistView';
-import { portfolioData } from '../data/portfolio-data';
 
 /**
  * Navigation Component (내비게이션 바)
